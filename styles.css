@@ -1,0 +1,349 @@
+/* =========================================================
+   BURGERS & CO. — PANEL DE ADMINISTRACIÓN
+   Misma identidad visual del sitio público: carbón cálido de
+   fondo, acentos mostaza y chile, Anton + Work Sans.
+   ========================================================= */
+
+:root {
+  --color-bg: #171412;
+  --color-bg-alt: #221d1a;
+  --color-panel: #1c1815;
+  --color-black: #0e0c0b;
+  --color-cream: #f6ede0;
+  --color-cream-dim: #a89b89;
+  --color-mustard: #f2a93b;
+  --color-chili: #d64545;
+  --color-stock-low: #e67e22;
+
+  --font-display: "Anton", "Arial Narrow", sans-serif;
+  --font-body: "Work Sans", -apple-system, sans-serif;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--color-bg);
+  color: var(--color-cream);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+button { font-family: inherit; cursor: pointer; border: none; }
+
+/* Utilidad para elementos visibles solo a lectores de pantalla */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Foco visible para navegación por teclado */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-mustard);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: 0.01ms !important; }
+}
+
+/* ============ HEADER ============ */
+.admin-header {
+  background: var(--color-black);
+  border-bottom: 1px solid rgba(246, 237, 224, 0.08);
+  padding: 1.1rem 2rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: 0.02em;
+}
+
+.logo span { color: var(--color-mustard); }
+
+.logo-tag {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-cream-dim);
+  letter-spacing: 0.04em;
+  margin-left: 0.4rem;
+}
+
+.header-role {
+  font-size: 0.85rem;
+  color: var(--color-cream-dim);
+}
+
+/* ============ MAIN LAYOUT ============ */
+.admin-main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* ============ MÉTRICAS ============ */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.metric-card {
+  background: var(--color-panel);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.4rem;
+  border-bottom: 3px solid var(--accent);
+}
+
+.metric-card--mustard { --accent: var(--color-mustard); }
+.metric-card--chili { --accent: var(--color-chili); }
+
+.metric-label {
+  font-size: 0.82rem;
+  color: var(--color-cream-dim);
+  margin-bottom: 0.5rem;
+}
+
+.metric-value {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  letter-spacing: 0.01em;
+  color: var(--accent);
+}
+
+/* ============ GRID PRINCIPAL: FORMULARIO + TABLA ============ */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.panel {
+  background: var(--color-panel);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+}
+
+.panel h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.25rem;
+  letter-spacing: 0.01em;
+  margin-bottom: 1.25rem;
+}
+
+/* Formulario pegado (sticky) para que quede visible al hacer scroll en la tabla */
+.form-panel { position: sticky; top: 1.5rem; }
+
+/* ============ FORMULARIO ============ */
+#productForm label {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--color-cream-dim);
+  margin-bottom: 0.35rem;
+  margin-top: 1rem;
+}
+
+#productForm label:first-of-type { margin-top: 0; }
+
+#productForm input,
+#productForm select {
+  width: 100%;
+  background: var(--color-bg);
+  color: var(--color-cream);
+  border: 1px solid rgba(246, 237, 224, 0.15);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.8rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+#productForm input:focus,
+#productForm select:focus {
+  border-color: var(--color-mustard);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.btn {
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  transition: filter 0.15s ease, background 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--color-chili);
+  color: var(--color-cream);
+}
+
+.btn-primary:hover { filter: brightness(1.08); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-cream-dim);
+  border: 1px solid rgba(246, 237, 224, 0.2);
+}
+
+.btn-ghost:hover {
+  color: var(--color-cream);
+  border-color: var(--color-cream-dim);
+}
+
+/* ============ TABLA ============ */
+.table-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.table-panel-head h2 { margin-bottom: 0; }
+
+.search-box input {
+  background: var(--color-bg);
+  color: var(--color-cream);
+  border: 1px solid rgba(246, 237, 224, 0.15);
+  border-radius: 999px;
+  padding: 0.55rem 1.1rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  min-width: 240px;
+}
+
+.search-box input:focus { border-color: var(--color-mustard); }
+
+.table-scroll { overflow-x: auto; }
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.product-table th {
+  text-align: left;
+  font-size: 0.78rem;
+  text-transform: none;
+  color: var(--color-cream-dim);
+  font-weight: 600;
+  padding: 0.6rem 0.8rem;
+  border-bottom: 1px solid rgba(246, 237, 224, 0.12);
+  white-space: nowrap;
+}
+
+.product-table td {
+  padding: 0.8rem;
+  border-bottom: 1px solid rgba(246, 237, 224, 0.07);
+  vertical-align: middle;
+}
+
+.product-table tbody tr:hover { background: rgba(246, 237, 224, 0.03); }
+
+.product-name-cell { font-weight: 600; }
+
+.category-pill {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(242, 169, 59, 0.12);
+  color: var(--color-mustard);
+  white-space: nowrap;
+}
+
+.category-pill[data-cat="Bebidas"] {
+  background: rgba(246, 237, 224, 0.1);
+  color: var(--color-cream);
+}
+
+.category-pill[data-cat="Acompañamientos"] {
+  background: rgba(214, 69, 69, 0.12);
+  color: var(--color-chili);
+}
+
+.stock-value { font-variant-numeric: tabular-nums; }
+
+.stock-value.is-low { color: var(--color-stock-low); font-weight: 700; }
+
+.row-actions {
+  display: flex;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.action-btn {
+  background: var(--color-bg);
+  color: var(--color-cream-dim);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(246, 237, 224, 0.12);
+  transition: all 0.15s ease;
+}
+
+.action-btn.edit:hover {
+  color: var(--color-mustard);
+  border-color: var(--color-mustard);
+}
+
+.action-btn.delete:hover {
+  color: var(--color-chili);
+  border-color: var(--color-chili);
+}
+
+.table-empty {
+  text-align: center;
+  color: var(--color-cream-dim);
+  padding: 2.5rem 1rem;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 960px) {
+  .dashboard-grid { grid-template-columns: 1fr; }
+  .form-panel { position: static; }
+  .metrics { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .admin-main { padding: 1.25rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .table-panel-head { flex-direction: column; align-items: stretch; }
+  .search-box input { width: 100%; }
+}
